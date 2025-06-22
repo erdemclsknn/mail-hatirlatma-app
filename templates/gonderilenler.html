@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container">
+  <h3>📬 Gönderilen Mail Logları</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Görev ID</th>
+        <th>Mail</th>
+        <th>Gönderim Tarihi</th>
+        <th>Durum</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for log in loglar %}
+      <tr>
+        <td>{{ log.id }}</td>
+        <td>{{ log.gorev_id }}</td>
+        <td>{{ log.email }}</td>
+        <td>{{ log.gonderim_tarihi.strftime('%d.%m.%Y %H:%M') }}</td>
+        <td>
+          {% if log.durum == 'gonderildi' %}
+            <span class="badge bg-success">Gönderildi</span>
+          {% else %}
+            <span class="badge bg-danger">Başarısız</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

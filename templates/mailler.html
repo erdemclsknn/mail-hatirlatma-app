@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container">
+  <h3>📧 Mail Listesi</h3>
+
+  <form method="POST" class="row g-3">
+    <div class="col-auto">
+      <input type="email" name="email" class="form-control" placeholder="Yeni mail adresi" required>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-success">Ekle</button>
+    </div>
+  </form>
+
+  <hr>
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Mail Adresi</th>
+        <th>Aktif mi?</th>
+        <th>İşlem</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for mail in liste %}
+      <tr>
+        <td>{{ mail.id }}</td>
+        <td>{{ mail.email }}</td>
+        <td>{{ 'Evet' if mail.aktif else 'Hayır' }}</td>
+        <td>
+          <form method="POST" action="{{ url_for('mail_sil', id=mail.id) }}" style="display:inline;">
+            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Silmek istediğinize emin misiniz?')">Sil</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+

@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container">
+  <h3>📝 Yeni Görev Ekle</h3>
+  <form method="POST">
+    <div class="mb-3">
+      <label class="form-label">Görev Başlığı</label>
+      <input type="text" name="baslik" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Açıklama</label>
+      <textarea name="aciklama" class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Önem (1–5)</label>
+      <input type="number" name="onem" class="form-control" min="1" max="5" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Yapıldığı Tarih</label>
+      <input type="date" name="yapilma_tarihi" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Yapılacak Tarih</label>
+      <input type="date" name="hedef_tarih" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Hatırlatma Günleri</label><br>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="hatirlatma_gunleri" value="1">
+        <label class="form-check-label">1 gün önce</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="hatirlatma_gunleri" value="2">
+        <label class="form-check-label">2 gün önce</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="hatirlatma_gunleri" value="7">
+        <label class="form-check-label">7 gün önce</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" name="hatirlatma_gunleri" value="30">
+        <label class="form-check-label">30 gün önce</label>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Mail Adresleri</label>
+      <select name="mailler" class="form-select" multiple required>
+        {% for mail in mailler %}
+          <option value="{{ mail.email }}">{{ mail.email }}</option>
+        {% endfor %}
+      </select>
+      <div class="form-text">Birden fazla mail için Ctrl tuşuna basarak seçin.</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Görevi Kaydet</button>
+  </form>
+</div>
+{% endblock %}

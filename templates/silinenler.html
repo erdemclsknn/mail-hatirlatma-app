@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container">
+  <h3>🗑️ Silinen Görevler</h3>
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>Başlık</th>
+        <th>Açıklama</th>
+        <th>Önem</th>
+        <th>Yapılma Tarihi</th>
+        <th>Hedef Tarih</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for gorev in silinenler %}
+      <tr style="background-color: #f5f5f5;">
+        <td>{{ gorev.baslik }}</td>
+        <td>{{ gorev.aciklama }}</td>
+        <td>{{ gorev.onem }}</td>
+        <td>{{ gorev.yapilma_tarihi.strftime('%d.%m.%Y') }}</td>
+        <td>{{ gorev.hedef_tarih.strftime('%d.%m.%Y') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

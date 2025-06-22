@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>📊 Görev Durumu Paneli</h2>
+
+  <div class="row mt-3">
+    <div class="col-md-4">
+      <div class="card bg-primary text-white">
+        <div class="card-body">
+          <h5 class="card-title">Toplam Görev</h5>
+          <p class="card-text display-6">{{ toplam }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card bg-success text-white">
+        <div class="card-body">
+          <h5 class="card-title">Gönderilen Mailler</h5>
+          <p class="card-text display-6">{{ gonderilen }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card bg-danger text-white">
+        <div class="card-body">
+          <h5 class="card-title">Vazgeçilenler</h5>
+          <p class="card-text display-6">{{ vazgecilen }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <h4>📌 Görev Listesi</h4>
+    <table class="table table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th>Başlık</th>
+          <th>Açıklama</th>
+          <th>Önem</th>
+          <th>Yapılma Tarihi</th>
+          <th>Hedef Tarih</th>
+          <th>İşlem</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for gorev in gorevler %}
+        <tr style="background-color: {% if gorev.onem == 1 %}#ffcccc{% elif gorev.onem == 2 %}#ffe0b3{% elif gorev.onem == 3 %}#ffffcc{% elif gorev.onem == 4 %}#e6ffcc{% else %}#cce5ff{% endif %};">
+          <td>{{ gorev.baslik }}</td>
+          <td>{{ gorev.aciklama }}</td>
+          <td>{{ gorev.onem }}</td>
+          <td>{{ gorev.yapilma_tarihi.strftime('%d.%m.%Y') }}</td>
+          <td>{{ gorev.hedef_tarih.strftime('%d.%m.%Y') }}</td>
+          <td><a href="{{ url_for('gorev_sil', id=gorev.id) }}" class="btn btn-sm btn-danger">Sil</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
