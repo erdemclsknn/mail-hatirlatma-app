@@ -1,0 +1,27 @@
+# --- Python / venv ---
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- Logs / runtime outputs ---
+*.log
+log.out
+output.log
+cron.log
+nohup.out
+
+# --- SQLite / local data ---
+*.db
+*.sqlite
+*.sqlite3
+instance/
+
+# --- Secrets ---
+.env
+
+# --- OS / editor ---
+.DS_Store
+.idea/
+.vscode/
